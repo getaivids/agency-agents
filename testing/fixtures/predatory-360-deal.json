@@ -1,0 +1,42 @@
+{
+  "_description": "Test fixture for Fiduciary Stress Test - predatory 360 deal contract",
+  "contract_type": "360 Deal",
+  "commission_rate": 0.25,
+  "exclusivity_months": 12,
+  "cross_collateralization": true,
+  "perpetual_rights": true,
+  "merch_cut": 0.30,
+  "touring_cut": 0.20,
+  "publishing_cut": 0.25,
+  "gross_fee": 50000,
+  "estimated_expenses": {
+    "travel": 5000,
+    "production": 8000,
+    "marketing_recoupable": 15000
+  },
+  "red_flags_expected": [
+    "commission_exceeds_20_percent",
+    "exclusivity_exceeds_6_months",
+    "cross_collateralization_present",
+    "perpetual_rights_grab",
+    "merch_cut_without_services",
+    "touring_cut_without_services",
+    "publishing_cut_without_admin"
+  ],
+  "expected_net_net_calculation": {
+    "gross": 50000,
+    "travel": -5000,
+    "commission_25_percent": -12500,
+    "taxes_30_percent_of_remaining": -9750,
+    "production_costs": -8000,
+    "net_net": 14750,
+    "net_margin_percent": 29.5
+  },
+  "hitl_approval_required": true,
+  "auto_reject": true,
+  "citation_sources": [
+    "Artist Management Ch. 7",
+    "Music Business PDF: Cross-Collateralization",
+    "Music Business PDF: 360 Deal"
+  ]
+}

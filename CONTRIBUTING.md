@@ -1,10 +1,15 @@
-# 🤝 Contributing to The Agency
+# 🤝 Contributing to OmniRoster
 
-First off, thank you for considering contributing to The Agency! It's people like you who make this collection of AI agents better for everyone.
+**⚠️ CRITICAL: This is NOT a chatbot repo.**
+
+OmniRoster is a **fiduciary-grade AI management agency for human DJ artists**. Every agent must be a business executive with specific API integrations, hard-coded guardrails protecting the human artist, and deliverables defined as **system state changes**, not text.
+
+First off, thank you for considering contributing to OmniRoster! It's people like you who make this collection of AI agents better for everyone.
 
 ## 📋 Table of Contents
 
 - [Code of Conduct](#code-of-conduct)
+- [What We're Building](#what-were-building)
 - [How Can I Contribute?](#how-can-i-contribute)
 - [Agent Design Guidelines](#agent-design-guidelines)
 - [Pull Request Process](#pull-request-process)
@@ -24,6 +29,25 @@ This project and everyone participating in it is governed by our Code of Conduct
 
 ---
 
+## 🎯 What We're Building
+
+OmniRoster transforms the `getaivids/agency-agents` repository from a *passive prompt library* into an *active, fiduciary-grade business operating system* for DJ artists.
+
+| Aspect | Original Repo | OmniRoster Adaptation |
+| :--- | :--- | :--- |
+| **Activation** | Manual CLI command | Proactive state machines + cron + webhooks |
+| **Tools** | GitHub, Jira, Docker | Spotify API, ASCAP, DocuSign, Rekordbox |
+| **Deliverables** | Markdown text, code snippets | System state changes, contracts, cue sheets |
+| **Memory** | Single-session context | Persistent vector DB + Airtable CRM |
+| **Guardrails** | Generic safety | Fiduciary duty, stamina limits, HITL approvals |
+| **User Interface** | Terminal / IDE | Artist Portal (mobile-first dashboard) |
+| **Knowledge** | General internet | Grounded in 3 canonical music business texts |
+| **Success Metric** | Code quality, task completion | Artist net profit, royalty collection, career growth |
+
+**Core Constraint**: Agents serve the HUMAN artist; they do not replace the performance.
+
+---
+
 ## 🎯 How Can I Contribute?
 
 ### 1. Create a New Agent
@@ -31,23 +55,12 @@ This project and everyone participating in it is governed by our Code of Conduct
 Have an idea for a specialized agent? Great! Here's how to add one:
 
 1. **Fork the repository**
-2. **Choose the appropriate division** (one of the 16 — or propose a new one):
-   - `academic/` - Research, scholarship, and domain-expert specialists
-   - `design/` - UX/UI and creative specialists
-   - `engineering/` - Software development specialists
-   - `finance/` - Financial planning, accounting, and investment specialists
-   - `game-development/` - Game design and development specialists
-   - `gis/` - Geospatial, mapping, and spatial-analysis specialists
-   - `marketing/` - Growth and marketing specialists
-   - `paid-media/` - Paid acquisition and media specialists
-   - `product/` - Product management specialists
-   - `project-management/` - PM and coordination specialists
-   - `sales/` - Sales, revenue, and deal specialists
-   - `security/` - Security architecture, AppSec, pentest, threat intel, and incident response
-   - `spatial-computing/` - AR/VR/XR specialists
-   - `specialized/` - Unique specialists that don't fit elsewhere
-   - `support/` - Operations and support specialists
-   - `testing/` - QA and testing specialists
+2. **Choose the appropriate division** (one of the 5 music-industry divisions):
+   - `artist-management/` - Career strategy, planning, organizing, directing, and controlling per Paul Allen's management principles
+   - `booking-sales/` - Live performance procurement, contract negotiation, rider enforcement, and promoter relations
+   - `business-affairs/` - Fiduciary oversight, royalty accounting, PRO registration, copyright law, and 360-deal auditing
+   - `creative-operations/` - Music prep, crate curation, visual asset generation, technical riders, and show-day logistics
+   - `marketing-fan-crm/` - EPK management, social media, ticket conversion, private domain ops, and post-gig content repurposing
 
    > **Divisions are defined by `divisions.json`** (repo root) — the single source of
    > truth for the division set, validated in CI by `scripts/check-divisions.sh`.
@@ -55,14 +68,24 @@ Have an idea for a specialized agent? Great! Here's how to add one:
    > `divisions.json` (label/icon/color), and add it to `AGENT_DIRS` in both
    > `scripts/convert.sh` and `scripts/lint-agents.sh`. The check fails the build
    > unless all of these agree and the directory contains at least one agent file.
-   >
-   > Note: `strategy/` (NEXUS playbooks/runbooks — no agent frontmatter) and
-   > `integrations/` (generated per-tool output from `convert.sh`) are **not**
-   > divisions and must never be added to the division lists.
 
-3. **Create your agent file** following the template below
-4. **Test your agent** in real scenarios
+3. **Create your agent file** following the mandatory schema below
+4. **Test your agent** against the validation protocol (see Phase 6)
 5. **Submit a Pull Request** with your agent
+
+---
+
+## ⚠️ CRITICAL: Agent Requirements
+
+Every agent you contribute must be a **fiduciary-grade business executive** with:
+
+1. **Specific API tool integrations** (not generic "search the web")
+2. **Hard-coded fiduciary guardrails** protecting the human artist
+3. **Deliverables defined as system state changes**, not text
+4. **Grounding in the canonical music business knowledge base**
+5. **Clear HITL triggers** for human approval
+
+**If your agent cannot take a real-world business action or protect the artist from financial/legal harm, it does not belong in this repo.**
 
 ### 2. Improve Existing Agents
 

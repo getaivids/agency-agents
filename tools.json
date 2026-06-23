@@ -1,18 +1,184 @@
 {
-  "_note": "Source of truth for the supported tool set. Keyed by the CLI tool name (kebab). Each entry carries the install contract (id, detect dirs, dest templates, render `format`, scope, version cmd) plus app presentation (label, short, accent, icon, order). aa converts + installs ALL listed tools. `format` is the renderer contract: the same `format` name guarantees byte-identical output, so two tools may share a format only if their rendered files are identical. Consumers (the Agency Agents app, scripts/convert.sh, scripts/install.sh) derive any per-format capability — e.g. whether the app ships a native renderer — from `format` against their own set; the catalog carries NO app-release state. scripts/check-tools.sh (CI) fails the build if this disagrees with ALL_TOOLS in install.sh or the converter set in convert.sh, or if any entry is missing id/label/kebab/format/dest. Add a tool: add an entry here, a convert_<tool> (or reuse a `format`) in convert.sh, and an install_<tool> in install.sh, then run scripts/check-tools.sh.",
+  "_note": "OmniRoster music-business-specific tool definitions. Each tool includes API endpoints, authentication methods, and rate limits. Sources referenced from Artist Management, Music Business, and DJ Business Plan PDFs.",
   "tools": {
-    "claude-code": {"id":"claudeCode","label":"Claude Code","short":"Claude","kebab":"claude-code","accent":"#D97757","icon":"claudecode","order":1,"scope":{"user":true,"project":true},"detect":{"dirs":[".claude"],"agentsDir":".claude/agents"},"version":{"bin":"claude","args":["--version"]},"format":"identity","slugFrom":"source","dest":{"user":[".claude/agents/{slug}.md"],"project":[".claude/agents/{slug}.md"]}},
-    "codex": {"id":"codex","label":"Codex","short":"Codex","kebab":"codex","accent":"#10A37F","icon":"codex","order":2,"scope":{"user":true,"project":true},"detect":{"dirs":[".codex"],"agentsDir":".codex/agents"},"version":{"bin":"codex","args":["--version"]},"format":"codex-toml","slugFrom":"name","dest":{"user":[".codex/agents/{slug}.toml"],"project":[".codex/agents/{slug}.toml"]}},
-    "gemini-cli": {"id":"geminiCli","label":"Gemini CLI","short":"Gemini","kebab":"gemini-cli","accent":"#4285F4","icon":"geminicli","order":3,"scope":{"user":true,"project":true},"detect":{"dirs":[".gemini/agents"],"agentsDir":".gemini/agents"},"version":{"bin":"gemini","args":["--version"]},"format":"gemini-md","slugFrom":"name","dest":{"user":[".gemini/agents/{slug}.md"],"project":[".gemini/agents/{slug}.md"]}},
-    "copilot": {"id":"copilot","label":"GitHub Copilot","short":"Copilot","kebab":"copilot","accent":"#6E40C9","icon":"githubcopilot","order":4,"scope":{"user":true,"project":true},"detect":{"dirs":[".github",".copilot"],"agentsDir":".github/agents"},"version":{"bin":"gh","args":["copilot","--version"]},"format":"identity","slugFrom":"source","dest":{"user":[".copilot/agents/{slug}.md",".github/agents/{slug}.md"],"project":[".github/agents/{slug}.md"]}},
-    "qwen": {"id":"qwen","label":"Qwen Code","short":"Qwen","kebab":"qwen","accent":"#615CED","icon":"qwen","order":5,"scope":{"user":true,"project":true},"detect":{"dirs":[".qwen"],"agentsDir":".qwen/agents"},"version":{"bin":"qwen","args":["--version"]},"format":"qwen-md","slugFrom":"name","dest":{"user":[".qwen/agents/{slug}.md"],"project":[".qwen/agents/{slug}.md"]}},
-    "cursor": {"id":"cursor","label":"Cursor","short":"Cursor","kebab":"cursor","accent":"#1F2430","icon":"cursor","order":6,"scope":{"user":false,"project":true},"detect":{"dirs":[".cursor"],"agentsDir":null},"version":{"bin":"cursor","args":["--version"]},"format":"cursor-mdc","slugFrom":"name","dest":{"user":[],"project":[".cursor/rules/{slug}.mdc"]}},
-    "opencode": {"id":"opencode","label":"opencode","short":"opencode","kebab":"opencode","accent":"#FF6B35","icon":"opencode","order":7,"scope":{"user":true,"project":true},"detect":{"dirs":[".config/opencode"],"agentsDir":null},"version":{"bin":"opencode","args":["--version"]},"format":"opencode-md","slugFrom":"name","dest":{"user":[".config/opencode/agents/{slug}.md"],"project":[".opencode/agents/{slug}.md"]}},
-    "osaurus": {"id":"osaurus","label":"Osaurus","short":"Osaurus","kebab":"osaurus","accent":"#10B981","icon":null,"order":8,"scope":{"user":true,"project":false},"detect":{"dirs":[".osaurus"],"agentsDir":".osaurus/skills"},"version":{"bin":"osaurus","args":["--version"]},"format":"skill-md","slugFrom":"name","slugPrefix":"agency-","dest":{"user":[".osaurus/skills/{slug}/SKILL.md"],"project":[]}},
-    "aider": {"id":"aider","label":"Aider","short":"Aider","kebab":"aider","accent":"#8B5CF6","icon":null,"order":9,"scope":{"user":false,"project":true},"detect":{"dirs":[],"agentsDir":null},"version":{"bin":"aider","args":["--version"]},"format":"aider-conventions","slugFrom":null,"dest":{"user":[],"project":["CONVENTIONS.md"]}},
-    "antigravity": {"id":"antigravity","label":"Antigravity","short":"antigravity","kebab":"antigravity","accent":"#0EA5E9","icon":"antigravity","order":10,"scope":{"user":true,"project":false},"detect":{"dirs":[".gemini/antigravity/skills"],"agentsDir":".gemini/antigravity/skills"},"version":{"bin":"agy","args":["--version"]},"format":"antigravity-skill","slugFrom":"name","slugPrefix":"agency-","dest":{"user":[".gemini/antigravity/skills/{slug}/SKILL.md"],"project":[]}},
-    "kimi": {"id":"kimi","label":"Kimi","short":"Kimi","kebab":"kimi","accent":"#0F0F12","icon":"kimi","order":11,"scope":{"user":true,"project":false},"detect":{"dirs":[],"agentsDir":".config/kimi/agents"},"version":{"bin":"kimi","args":["--version"]},"format":"kimi-agent","slugFrom":"name","dest":{"user":[".config/kimi/agents/{slug}/agent.yaml",".config/kimi/agents/{slug}/system.md"],"project":[]}},
-    "openclaw": {"id":"openclaw","label":"OpenClaw","short":"openclaw","kebab":"openclaw","accent":"#E11D48","icon":null,"order":12,"scope":{"user":true,"project":false},"detect":{"dirs":[".openclaw"],"agentsDir":".openclaw/agency-agents"},"version":{"bin":"openclaw","args":["--version"]},"format":"openclaw-workspace","slugFrom":"name","dest":{"user":[".openclaw/agency-agents/{slug}/SOUL.md",".openclaw/agency-agents/{slug}/AGENTS.md",".openclaw/agency-agents/{slug}/IDENTITY.md"],"project":[]}},
-    "windsurf": {"id":"windsurf","label":"Windsurf","short":"Windsurf","kebab":"windsurf","accent":"#09B6A2","icon":"windsurf","order":13,"scope":{"user":false,"project":true},"detect":{"dirs":[".codeium"],"agentsDir":null},"version":{"bin":"windsurf","args":["--version"]},"format":"windsurf-rules","slugFrom":null,"dest":{"user":[],"project":[".windsurfrules"]}}
+    "spotify-for-artists-api": {
+      "id": "spotifyArtists",
+      "label": "Spotify for Artists API",
+      "category": "Analytics",
+      "purpose": "Stream data, audience demographics, playlist adds",
+      "source": "Artist Mgmt Ch. 11",
+      "auth": "OAuth 2.0 (Client Credentials)",
+      "endpoints": {
+        "base": "https://api.spotify.com/v1",
+        "tracks": "/tracks/{id}",
+        "artist": "/artists/{id}",
+        "top-tracks": "/artists/{id}/top-tracks",
+        "related-artists": "/artists/{id}/related-artists"
+      },
+      "rate_limits": {
+        "requests_per_second": 50,
+        "daily_quota": 100000
+      }
+    },
+    "chartmetric-api": {
+      "id": "chartmetric",
+      "label": "Chartmetric API",
+      "category": "Analytics",
+      "purpose": "Cross-platform tracking, TikTok virality, radio spins",
+      "source": "Music Biz: Airplay",
+      "auth": "API Key (Bearer Token)",
+      "endpoints": {
+        "base": "https://api.chartmetric.com",
+        "artist": "/artist/{id}",
+        "playlist-adds": "/playlist/adds",
+        "radio-spins": "/radio/spins",
+        "tiktok-virality": "/social/tiktok/trending"
+      },
+      "rate_limits": {
+        "requests_per_minute": 60,
+        "monthly_quota": 50000
+      }
+    },
+    "ascap-bmi-soundexchange": {
+      "id": "proRegistry",
+      "label": "ASCAP/BMI/SoundExchange Registry",
+      "category": "Rights",
+      "purpose": "PRO cue sheet submission, royalty verification",
+      "source": "Music Biz: PRO",
+      "auth": "API Key + Member ID",
+      "endpoints": {
+        "ascap": "https://api.ascap.com/iswc/register",
+        "bmi": "https://api.bmi.com/works/register",
+        "soundexchange": "https://api.soundexchange.com/isrc/submit"
+      },
+      "rate_limits": {
+        "submissions_per_day": 1000,
+        "queries_per_hour": 500
+      }
+    },
+    "docusign-api": {
+      "id": "docusign",
+      "label": "DocuSign API",
+      "category": "Legal",
+      "purpose": "Contract execution with audit trail",
+      "source": "Artist Mgmt Ch. 7",
+      "auth": "OAuth 2.0 (JWT Grant)",
+      "endpoints": {
+        "base": "https://www.docusign.net/restapi/v2.1",
+        "envelopes": "/accounts/{accountId}/envelopes",
+        "templates": "/accounts/{accountId}/templates",
+        "status": "/accounts/{accountId}/envelopes/{envelopeId}"
+      },
+      "rate_limits": {
+        "requests_per_minute": 1000,
+        "envelopes_per_day": 5000
+      }
+    },
+    "quickbooks-api": {
+      "id": "quickbooks",
+      "label": "QuickBooks API",
+      "category": "Finance",
+      "purpose": "P&L, invoicing, deposit tracking, recoupment",
+      "source": "DJ Plan: Financial",
+      "auth": "OAuth 2.0 (3-legged)",
+      "endpoints": {
+        "base": "https://quickbooks.api.intuit.com/v3/company/{realmId}",
+        "invoices": "/invoice",
+        "payments": "/payment",
+        "reports": "/reports/profitandloss"
+      },
+      "rate_limits": {
+        "requests_per_second": 10,
+        "daily_quota": 25000
+      }
+    },
+    "rekordbox-serato-api": {
+      "id": "djSoftware",
+      "label": "Rekordbox/Serato API",
+      "category": "Creative",
+      "purpose": "Crate analysis, BPM/key extraction, play history",
+      "source": "DJ Plan: Services",
+      "auth": "Local File System Access",
+      "endpoints": {
+        "rekordbox_db": "~/Library/Application Support/Pioneer/rekordbox/export.db",
+        "serato_db": "~/Music/_Serato_/database.serato2",
+        "export_format": "JSON/XML"
+      },
+      "rate_limits": {
+        "file_reads_per_hour": 100
+      }
+    },
+    "beatport-api": {
+      "id": "beatport",
+      "label": "Beatport API",
+      "category": "Creative",
+      "purpose": "Track metadata, label releases, genre trending",
+      "source": "Music Biz: Charts",
+      "auth": "OAuth 1.0a",
+      "endpoints": {
+        "base": "https://oauth-api.beatport.com",
+        "tracks": "/catalog/3/tracks",
+        "releases": "/catalog/3/releases",
+        "genres": "/catalog/3/genres"
+      },
+      "rate_limits": {
+        "requests_per_minute": 60
+      }
+    },
+    "songkick-bandsintown": {
+      "id": "tourData",
+      "label": "Songkick/Bandsintown API",
+      "category": "Touring",
+      "purpose": "Venue scraping, routing, competitor gig tracking",
+      "source": "Artist Mgmt Ch. 10",
+      "auth": "API Key",
+      "endpoints": {
+        "songkick_base": "https://api.songkick.com/api/3.0",
+        "songkick_events": "/events.json",
+        "songkick_venues": "/venues/{id}.json",
+        "bandsintown_base": "https://rest.bandsintown.com/artists",
+        "bandsintown_events": "/{artist_name}/events"
+      },
+      "rate_limits": {
+        "requests_per_second": 2,
+        "daily_quota": 10000
+      }
+    },
+    "airtable-tour-tracker": {
+      "id": "airtable",
+      "label": "Airtable Tour Tracker",
+      "category": "Ops",
+      "purpose": "Master gig database, status state machine",
+      "source": "DJ Plan: Operations",
+      "auth": "Bearer Token (Personal Access Token)",
+      "endpoints": {
+        "base": "https://api.airtable.com/v0/{baseId}",
+        "gigs_table": "/Gigs",
+        "contracts_table": "/Contracts",
+        "expenses_table": "/Expenses"
+      },
+      "rate_limits": {
+        "requests_per_second": 5,
+        "records_per_request": 100
+      }
+    },
+    "canva-video-ai": {
+      "id": "canva",
+      "label": "Canva Video AI",
+      "category": "Marketing",
+      "purpose": "EPK updates, social content, highlight reels",
+      "source": "DJ Plan: Marketing",
+      "auth": "OAuth 2.0",
+      "endpoints": {
+        "base": "https://api.canva.com/v1",
+        "designs": "/designs",
+        "exports": "/exports",
+        "templates": "/templates"
+      },
+      "rate_limits": {
+        "requests_per_minute": 100,
+        "exports_per_hour": 50
+      }
+    }
   }
 }

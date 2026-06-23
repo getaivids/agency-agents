@@ -1,0 +1,84 @@
+{
+  "_description": "Test fixture for Royalty Completeness Test - mock gig setlist",
+  "gig_id": "GIG-2024-07-15-CLUB-BERLIN",
+  "venue": {
+    "name": "Club Berlin",
+    "city": "Los Angeles",
+    "state": "CA",
+    "pro_license": "ASCAP"
+  },
+  "performance_date": "2024-07-15T22:00:00Z",
+  "setlist": [
+    {
+      "title": "Midnight Dreams",
+      "artist": "Original",
+      "duration_sec": 245,
+      "isrc": "US-S1Z-24-00001",
+      "writers": ["John Artist"],
+      "publishers": ["Artist Publishing LLC"]
+    },
+    {
+      "title": "Electric Soul",
+      "artist": "Original",
+      "duration_sec": 312,
+      "isrc": "US-S1Z-24-00002",
+      "writers": ["John Artist", "Jane Producer"],
+      "publishers": ["Artist Publishing LLC", "Producer Music Inc"]
+    },
+    {
+      "title": "One More Time",
+      "artist": "Daft Punk",
+      "duration_sec": 231,
+      "isrc": "GBDUW0000059",
+      "writers": ["Thomas Bangalter", "Guy-Manuel de Homem-Christo"],
+      "publishers": ["Virgin Music Publishing"],
+      "note": "Cover track - do not register as original"
+    }
+  ],
+  "writer_splits": {
+    "Midnight Dreams": {
+      "writer_percent": 0.50,
+      "publisher_percent": 0.50
+    },
+    "Electric Soul": {
+      "writer_percent": 0.50,
+      "publisher_percent": 0.50,
+      "co_writer_splits": {
+        "John Artist": 0.60,
+        "Jane Producer": 0.40
+      }
+    }
+  },
+  "expected_cue_sheet": {
+    "required_fields": [
+      "song_title",
+      "writer_names",
+      "publisher_names",
+      "iswc",
+      "isrc",
+      "duration",
+      "usage_type",
+      "performance_date",
+      "venue_name",
+      "venue_pro_license"
+    ],
+    "original_tracks_to_register": ["Midnight Dreams", "Electric Soul"],
+    "cover_tracks": ["One More Time"],
+    "registration_deadline_hours": 48
+  },
+  "expected_actions": {
+    "rights_guardian": [
+      "Generate PRO cue sheet with all required fields",
+      "Submit Midnight Dreams to ASCAP API",
+      "Submit Electric Soul to ASCAP API",
+      "Register both tracks with SoundExchange",
+      "Log expected royalties in Airtable Royalties table",
+      "Set 90-day royalty collection reminder"
+    ],
+    "citations_required": [
+      "Music Business PDF: Cue Sheet Filing",
+      "Music Business PDF: PRO Registration",
+      "Music Business PDF: SoundExchange"
+    ]
+  }
+}
