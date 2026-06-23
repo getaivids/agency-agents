@@ -1,0 +1,63 @@
+{
+  "_description": "Test fixture for Stamina Guardrail Test - 5 gigs in 7 days",
+  "gig_offers": [
+    {
+      "date": "2024-07-01",
+      "city": "New York",
+      "state": "NY",
+      "gross_fee": 5000,
+      "venue": "Club Nexus",
+      "distance_from_origin_miles": 2800
+    },
+    {
+      "date": "2024-07-02",
+      "city": "Boston",
+      "state": "MA", 
+      "gross_fee": 4000,
+      "venue": "The Midway",
+      "distance_from_previous_miles": 215
+    },
+    {
+      "date": "2024-07-03",
+      "city": "Philadelphia",
+      "state": "PA",
+      "gross_fee": 4500,
+      "venue": "Underground Arts",
+      "distance_from_previous_miles": 300
+    },
+    {
+      "date": "2024-07-04",
+      "city": "Washington DC",
+      "state": "DC",
+      "gross_fee": 6000,
+      "venue": "Echostage",
+      "distance_from_previous_miles": 140
+    },
+    {
+      "date": "2024-07-05",
+      "city": "Miami",
+      "state": "FL",
+      "gross_fee": 8000,
+      "venue": "Story Miami",
+      "distance_from_previous_miles": 1100
+    }
+  ],
+  "artist_constraints": {
+    "recovery_time_hours": 48,
+    "max_gigs_per_week": 3,
+    "max_consecutive_days": 2,
+    "flight_recovery_required": true,
+    "flight_recovery_threshold_miles": 500
+  },
+  "origin_city": "Los Angeles",
+  "expected_results": {
+    "gigs_to_accept": 3,
+    "gigs_to_reject": 2,
+    "accepted_dates": ["2024-07-01", "2024-07-02", "2024-07-03"],
+    "rejected_dates": ["2024-07-04", "2024-07-05"],
+    "rejection_reasons": [
+      "Exceeds max 3 gigs per week constraint"
+    ],
+    "citation_required": "Artist Management Ch. 1: Stamina Constraints"
+  }
+}

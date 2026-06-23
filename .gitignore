@@ -1,83 +1,67 @@
-# macOS
-.DS_Store
-.AppleDouble
-.LSOverride
-._*
-
-# Thumbnails
-Thumbs.db
-
-# Editor directories and files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.project
-.classpath
-.settings/
-*.sublime-project
-*.sublime-workspace
-
-# Node.js (if adding web tools later)
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
-yarn.lock
-
-# Python (if adding scripts)
+```
+# Compiled and build artifacts
+*.pyc
 __pycache__/
-*.py[cod]
-*$py.class
+*.o
+*.obj
+*.exe
+*.dll
 *.so
-.Python
-env/
+*.a
+*.out
+
+# Dependencies
+.venv/
 venv/
-ENV/
-.venv
-
-# Logs
-*.log
-logs/
-
-# Temporary files
-*.tmp
-*.temp
-.cache/
-
-# Testing
-coverage/
-.nyc_output/
-*.lcov
-
-# Build outputs
+node_modules/
 dist/
 build/
-*.egg-info/
+target/
+.gradle/
+.mypy_cache/
+.pytest_cache/
 
-# Personal notes and scratch files
-scratch/
-notes/
-TODO.md
-NOTES.md
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.swo
 
-# Generated integration files — run scripts/convert.sh to regenerate locally
-# The scripts/ and integrations/*/README.md files ARE committed; only generated
-# agent/skill files are excluded.
-integrations/antigravity/agency-*/
-integrations/gemini-cli/skills/
-integrations/gemini-cli/gemini-extension.json
-integrations/gemini-cli/agents
-integrations/opencode/agents/
-integrations/cursor/rules/
-integrations/aider/CONVENTIONS.md
-integrations/windsurf/.windsurfrules
-integrations/openclaw/*
-integrations/qwen/agents/
-integrations/kimi/*/
-!integrations/openclaw/README.md
-!integrations/kimi/README.md
-integrations/codex/agents/*
-integrations/osaurus/agency-*/
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Compressed files
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.Z
+*.lz
+*.lzo
+```
